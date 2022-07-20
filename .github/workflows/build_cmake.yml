@@ -22,18 +22,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04]
+        os: [debian-11]
 
     steps:
       - name: Checkout Source code
         if: github.event_name == 'push'
         uses: actions/checkout@v2
-
-      - name: Checkout Source code
-        if: github.event_name == 'pull_request'
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Install Dependencies
         run: |
