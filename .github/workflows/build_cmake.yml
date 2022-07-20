@@ -22,7 +22,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [debian-11.4]
+        os: [debian-11]
 
     steps:
       - name: Checkout Source code
