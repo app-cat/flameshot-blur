@@ -44,9 +44,9 @@ add_subdirectory(tools)
 
 
 set(FLAMESHOT_TS_FILES
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_zh_CN.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_zh_HK.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_zh_TW.ts
+      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_zh_CN.xml
+      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_zh_HK.xml
+      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_zh_TW.xml
          )
 
 if (GENERATE_TS)
