@@ -1682,19 +1682,6 @@ Please solve them manually in the configuration file.</source>
     </message>
 </context>
 <context>
-    <name>MarkerTool</name>
-    <message>
-        <location filename="../../src/tools/marker/markertool.cpp" line="23"/>
-        <source>Marker</source>
-        <translation>标记</translation>
-    </message>
-    <message>
-        <location filename="../../src/tools/marker/markertool.cpp" line="33"/>
-        <source>Set the Marker as the paint tool</source>
-        <translation>将标记设置为绘画工具</translation>
-    </message>
-</context>
-<context>
     <name>MoveTool</name>
     <message>
         <location filename="../../src/tools/move/movetool.cpp" line="23"/>

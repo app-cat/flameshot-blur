@@ -30,7 +30,6 @@ public:
         TYPE_SELECTION = 3,
         TYPE_RECTANGLE = 4,
         TYPE_CIRCLE = 5,
-        TYPE_MARKER = 6,
         TYPE_SELECTIONINDICATOR = 7,
         TYPE_MOVESELECTION = 8,
         TYPE_UNDO = 9,

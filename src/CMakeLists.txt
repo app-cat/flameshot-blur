@@ -19,49 +19,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 # set application icon
-if (APPLE)
-    # generate iconset
-    execute_process(
-            COMMAND bash "-c" "mkdir -p flameshot.iconset"
-    )
-    execute_process(
-            COMMAND bash "-c" "sips -z 16 16     \"${CMAKE_SOURCE_DIR}\"/data/img/app/flameshot.monochrome.png --out flameshot.iconset/icon_16x16.png"
-            COMMAND bash "-c" "sips -z 32 32     \"${CMAKE_SOURCE_DIR}\"/data/img/app/flameshot.monochrome.png --out flameshot.iconset/icon_16x16@2x.png"
-            COMMAND bash "-c" "sips -z 32 32     \"${CMAKE_SOURCE_DIR}\"/data/img/app/flameshot.monochrome.png --out flameshot.iconset/icon_32x32.png"
-            COMMAND bash "-c" "sips -z 64 64     \"${CMAKE_SOURCE_DIR}\"/data/img/app/flameshot.monochrome.png --out flameshot.iconset/icon_32x32@2x.png"
-            COMMAND bash "-c" "sips -z 64 64     \"${CMAKE_SOURCE_DIR}\"/data/img/app/flameshot.monochrome.png --out flameshot.iconset/icon_64x64x.png"
-            COMMAND bash "-c" "sips -z 128 128   \"${CMAKE_SOURCE_DIR}\"/data/img/app/flameshot.monochrome.png --out flameshot.iconset/icon_64x64@2.png"
-            COMMAND bash "-c" "sips -z 128 128   \"${CMAKE_SOURCE_DIR}\"/data/img/app/flameshot.monochrome-1024.png --out flameshot.iconset/icon_128x128.png"
-            COMMAND bash "-c" "sips -z 256 256   \"${CMAKE_SOURCE_DIR}\"/data/img/app/flameshot.monochrome-1024.png --out flameshot.iconset/icon_128x128@2x.png"
-            COMMAND bash "-c" "sips -z 256 256   \"${CMAKE_SOURCE_DIR}\"/data/img/app/flameshot.monochrome-1024.png --out flameshot.iconset/icon_256x256.png"
-            COMMAND bash "-c" "sips -z 512 512   \"${CMAKE_SOURCE_DIR}\"/data/img/app/flameshot.monochrome-1024.png --out flameshot.iconset/icon_256x256@2x.png"
-            COMMAND bash "-c" "sips -z 512 512   \"${CMAKE_SOURCE_DIR}\"/data/img/app/flameshot.monochrome-1024.png --out flameshot.iconset/icon_512x512.png"
-            COMMAND bash "-c" "sips -z 1024 1024 \"${CMAKE_SOURCE_DIR}\"/data/img/app/flameshot.monochrome-1024.png --out flameshot.iconset/icon_512x512@2x.png"
 
-
-            COMMAND bash "-c" "iconutil -c icns flameshot.iconset"
-    )
-
-    execute_process(
-            COMMAND bash "-c" "rm -R flameshot.iconset"
-    )
-
-    execute_process(
-            # copy icon from cache generated on the localhost if generation on CI failed
-            COMMAND bash "-c" "[[ -r 'flameshot.icns' ]] || cp \"${CMAKE_SOURCE_DIR}\"/packaging/macos/flameshot.icns ./"
-    )
-
-    # Set application icon
-    set(MACOSX_BUNDLE_ICON_FILE flameshot.icns)
-
-    # And this part tells CMake where to find and install the file itself
-    set(APP_ICON_MACOSX ${CMAKE_BINARY_DIR}/flameshot.icns)
-    set_source_files_properties(${APP_ICON_MACOSX} PROPERTIES MACOSX_PACKAGE_LOCATION "Resources")
-
-    add_executable(flameshot MACOSX_BUNDLE main.cpp ${APP_ICON_MACOSX})
-else ()
-    add_executable(flameshot)
-endif ()
+add_executable(flameshot)
 
 add_executable(Flameshot::flameshot ALIAS flameshot)
 
@@ -85,37 +44,6 @@ add_subdirectory(tools)
 
 
 set(FLAMESHOT_TS_FILES
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_bg.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_ca.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_cs.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_de_DE.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_el.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_es.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_eu.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_fa.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_fi.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_fr.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_gl.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_grc.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_he.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_hu.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_id.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_it_IT.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_ja.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_ka.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_ko.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_nb_NO.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_nl_NL.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_nl.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_pl.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_pt_BR.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_ru.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_sk.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_sr_SP.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_sv_SE.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_tr.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_uk.ts
-      ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_vi.ts
       ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_zh_CN.ts
       ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_zh_HK.ts
       ${CMAKE_SOURCE_DIR}/data/translations/Internationalization_zh_TW.ts
@@ -157,7 +85,6 @@ target_include_directories(
          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/tools/imgur>
          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/tools/launcher>
          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/tools/line>
-         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/tools/marker>
          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/tools/move>
          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/tools/pencil>
          $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/tools/pin>

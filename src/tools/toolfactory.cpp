@@ -12,7 +12,6 @@
 #include "invert/inverttool.h"
 #include "launcher/applaunchertool.h"
 #include "line/linetool.h"
-#include "marker/markertool.h"
 #include "move/movetool.h"
 #include "pencil/penciltool.h"
 #include "pin/pintool.h"
@@ -43,7 +42,6 @@ CaptureTool* ToolFactory::CreateTool(CaptureTool::Type t, QObject* parent)
         if_TYPE_return_TOOL(TYPE_SELECTION, SelectionTool);
         if_TYPE_return_TOOL(TYPE_RECTANGLE, RectangleTool);
         if_TYPE_return_TOOL(TYPE_CIRCLE, CircleTool);
-        if_TYPE_return_TOOL(TYPE_MARKER, MarkerTool);
         if_TYPE_return_TOOL(TYPE_MOVESELECTION, MoveTool);
         if_TYPE_return_TOOL(TYPE_UNDO, UndoTool);
         if_TYPE_return_TOOL(TYPE_COPY, CopyTool);

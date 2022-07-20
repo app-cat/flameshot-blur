@@ -29,7 +29,6 @@ target_sources(
           launcher/openwithprogram.cpp
           launcher/terminallauncher.cpp)
 target_sources(flameshot PRIVATE line/linetool.h line/linetool.cpp)
-target_sources(flameshot PRIVATE marker/markertool.h marker/markertool.cpp)
 target_sources(flameshot PRIVATE move/movetool.h move/movetool.cpp)
 target_sources(flameshot PRIVATE pencil/penciltool.h pencil/penciltool.cpp)
 target_sources(
