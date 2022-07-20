@@ -64,7 +64,6 @@ signals:
 
 private slots:
     void undo();
-    void redo();
     void togglePanel();
     void childEnter();
     void childLeave();

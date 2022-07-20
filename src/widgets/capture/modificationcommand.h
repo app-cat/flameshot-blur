@@ -17,7 +17,6 @@ public:
                         const CaptureToolObjects& captureToolObjectsBackup);
 
     virtual void undo() override;
-    virtual void redo() override;
 
 private:
     CaptureToolObjects m_captureToolObjects;

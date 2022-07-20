@@ -2092,19 +2092,6 @@ You may need to escape the &apos;#&apos; sign as in &apos;\#FFF&apos;</translati
     </message>
 </context>
 <context>
-    <name>RedoTool</name>
-    <message>
-        <location filename="../../src/tools/redo/redotool.cpp" line="23"/>
-        <source>Redo</source>
-        <translation>Redo</translation>
-    </message>
-    <message>
-        <location filename="../../src/tools/redo/redotool.cpp" line="33"/>
-        <source>Redo the next modification</source>
-        <translation>Redo the next modification</translation>
-    </message>
-</context>
-<context>
     <name>SaveTool</name>
     <message>
         <location filename="../../src/tools/save/savetool.cpp" line="24"/>

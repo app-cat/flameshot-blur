@@ -39,7 +39,6 @@ public:
         TYPE_IMAGEUPLOADER = 13,
         TYPE_OPEN_APP = 14,
         TYPE_PIXELATE = 15,
-        TYPE_REDO = 16,
         TYPE_PIN = 17,
         TYPE_TEXT = 18,
         TYPE_CIRCLECOUNT = 19,
@@ -59,8 +58,6 @@ public:
         REQ_HIDE_GUI,
         // Undo the last active modification in the stack.
         REQ_UNDO_MODIFICATION,
-        // Redo the next modification in the stack.
-        REQ_REDO_MODIFICATION,
         // Open the color picker under the mouse.
         REQ_SHOW_COLOR_PICKER,
         // Notify is the screenshot has been saved.
@@ -87,7 +84,7 @@ public:
     virtual void setCapture(const QPixmap& pixmap){};
 
     // Returns false when the tool is in an inconsistent state and shouldn't
-    // be included in the tool undo/redo stack.
+    // be included in the tool undo stack.
     virtual bool isValid() const = 0;
     // Close the capture after the process() call if the tool was activated
     // from a button press. TODO remove this function

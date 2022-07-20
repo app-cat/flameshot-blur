@@ -310,7 +310,6 @@ void CaptureWidget::initButtons()
 
         switch (t) {
             case CaptureTool::TYPE_UNDO:
-            case CaptureTool::TYPE_REDO:
                 // nothing to do, just skip non-dynamic buttons with existing
                 // hard coded slots
                 break;
@@ -476,7 +475,7 @@ void CaptureWidget::releaseActiveTool()
 {
     if (m_activeTool) {
         if (m_activeTool->editMode()) {
-            // Object shouldn't be deleted here because it is in the undo/redo
+            // Object shouldn't be deleted here because it is in the undo
             // stack, just set current pointer to null
             m_activeTool->setEditMode(false);
             if (m_activeTool->isChanged()) {
@@ -630,7 +629,7 @@ void CaptureWidget::showColorPicker(const QPoint& pos)
         selectToolItemAtPos(pos);
     }
 
-    // save current state for undo/redo stack
+    // save current state for undo stack
     if (m_panel->activeLayerIndex() >= 0) {
         m_captureToolObjectsBackup = m_captureToolObjects;
     }
@@ -1123,7 +1122,7 @@ void CaptureWidget::initPanel()
     emit toolSizeChanged(m_context.toolSize);
     m_panel->pushWidget(m_sidePanel);
 
-    // Fill undo/redo/history list widget
+    // Fill undo/history list widget
     m_panel->fillCaptureTools(m_captureToolObjects.captureToolObjects());
 }
 
@@ -1268,9 +1267,6 @@ void CaptureWidget::handleToolSignal(CaptureTool::Request r)
             break;
         case CaptureTool::REQ_UNDO_MODIFICATION:
             undo();
-            break;
-        case CaptureTool::REQ_REDO_MODIFICATION:
-            redo();
             break;
         case CaptureTool::REQ_SHOW_COLOR_PICKER:
             // TODO
@@ -1476,8 +1472,6 @@ void CaptureWidget::initShortcuts()
     newShortcut(
       QKeySequence(ConfigHandler().shortcut("TYPE_UNDO")), this, SLOT(undo()));
 
-    newShortcut(
-      QKeySequence(ConfigHandler().shortcut("TYPE_REDO")), this, SLOT(redo()));
 
     newShortcut(QKeySequence(ConfigHandler().shortcut("TYPE_TOGGLE_PANEL")),
                 this,
@@ -1765,7 +1759,7 @@ void CaptureWidget::childLeave()
 void CaptureWidget::setCaptureToolObjects(
   const CaptureToolObjects& captureToolObjects)
 {
-    // Used for undo/redo
+    // Used for undo
     m_captureToolObjects = captureToolObjects;
     drawToolsData();
     updateLayersPanel();
@@ -1791,18 +1785,6 @@ void CaptureWidget::undo()
     restoreCircleCountState();
 }
 
-void CaptureWidget::redo()
-{
-    // drawToolsData is called twice to update both previous and new regions
-    // FIXME this is a temporary workaround
-    drawToolsData();
-    m_undoStack.redo();
-    drawToolsData();
-    update();
-    updateLayersPanel();
-
-    restoreCircleCountState();
-}
 
 QRect CaptureWidget::extendedSelection() const
 {

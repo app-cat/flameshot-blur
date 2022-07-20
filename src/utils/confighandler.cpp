@@ -18,9 +18,7 @@
 #include <algorithm>
 #include <stdexcept>
 
-#if defined(Q_OS_MACOS)
-#include <QProcess>
-#endif
+
 
 // HELPER FUNCTIONS
 
@@ -140,12 +138,8 @@ static QMap<QString, QSharedPointer<KeySequence>> recognizedShortcuts = {
     SHORTCUT("TYPE_ACCEPT"              ,   "Return"                ),
     SHORTCUT("TYPE_EXIT"                ,   "Ctrl+Q"                ),
     SHORTCUT("TYPE_IMAGEUPLOADER"       ,                           ),
-#if !defined(Q_OS_MACOS)
-    SHORTCUT("TYPE_OPEN_APP"            ,   "Ctrl+O"                ),
-#endif
     SHORTCUT("TYPE_PIXELATE"            ,   "B"                     ),
     SHORTCUT("TYPE_INVERT"              ,   "I"                     ),
-    SHORTCUT("TYPE_REDO"                ,   "Ctrl+Shift+Z"          ),
     SHORTCUT("TYPE_TEXT"                ,   "T"                     ),
     SHORTCUT("TYPE_TOGGLE_PANEL"        ,   "Space"                 ),
     SHORTCUT("TYPE_RESIZE_LEFT"         ,   "Shift+Left"            ),
@@ -158,13 +152,7 @@ static QMap<QString, QSharedPointer<KeySequence>> recognizedShortcuts = {
     SHORTCUT("TYPE_MOVE_UP"             ,   "Up"                    ),
     SHORTCUT("TYPE_MOVE_DOWN"           ,   "Down"                  ),
     SHORTCUT("TYPE_COMMIT_CURRENT_TOOL" ,   "Ctrl+Return"           ),
-#if defined(Q_OS_MACOS)
     SHORTCUT("TYPE_DELETE_CURRENT_TOOL" ,   "Backspace"             ),
-    SHORTCUT("TAKE_SCREENSHOT"          ,   "Ctrl+Shift+X"          ),
-    SHORTCUT("SCREENSHOT_HISTORY"       ,   "Alt+Shift+X"           ),
-#else
-    SHORTCUT("TYPE_DELETE_CURRENT_TOOL" ,   "Delete"                ),
-#endif
     SHORTCUT("TYPE_PIN"                 ,                           ),
     SHORTCUT("TYPE_SELECTIONINDICATOR"  ,                           ),
     SHORTCUT("TYPE_SIZEINCREASE"        ,                           ),

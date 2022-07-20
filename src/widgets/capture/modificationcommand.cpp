@@ -19,7 +19,4 @@ void ModificationCommand::undo()
     m_captureWidget->setCaptureToolObjects(m_captureToolObjectsBackup);
 }
 
-void ModificationCommand::redo()
-{
-    m_captureWidget->setCaptureToolObjects(m_captureToolObjects);
-}
+
