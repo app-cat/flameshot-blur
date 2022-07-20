@@ -18,7 +18,9 @@
 #include <algorithm>
 #include <stdexcept>
 
-
+#if defined(Q_OS_MACOS)
+#include <QProcess>
+#endif
 
 // HELPER FUNCTIONS
 
@@ -81,9 +83,7 @@ static QMap<class QString, QSharedPointer<ValueHandler>>
     OPTION("allowMultipleGuiInstances"   ,Bool               ( false         )),
     OPTION("showMagnifier"               ,Bool               ( false         )),
     OPTION("squareMagnifier"             ,Bool               ( false         )),
-#if !defined(Q_OS_WIN)
     OPTION("autoCloseIdleDaemon"         ,Bool               ( false         )),
-#endif
     OPTION("startupLaunch"               ,Bool               ( false         )),
     OPTION("showStartupLaunchMessage"    ,Bool               ( true          )),
     OPTION("copyAndCloseAfterUpload"     ,Bool               ( true          )),
@@ -138,6 +138,7 @@ static QMap<QString, QSharedPointer<KeySequence>> recognizedShortcuts = {
     SHORTCUT("TYPE_ACCEPT"              ,   "Return"                ),
     SHORTCUT("TYPE_EXIT"                ,   "Ctrl+Q"                ),
     SHORTCUT("TYPE_IMAGEUPLOADER"       ,                           ),
+    SHORTCUT("TYPE_OPEN_APP"            ,   "Ctrl+O"                ),
     SHORTCUT("TYPE_PIXELATE"            ,   "B"                     ),
     SHORTCUT("TYPE_INVERT"              ,   "I"                     ),
     SHORTCUT("TYPE_TEXT"                ,   "T"                     ),
