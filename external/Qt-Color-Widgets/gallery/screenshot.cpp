@@ -159,7 +159,6 @@ int main(int argc, char *argv[])
     color_widgets::HueSlider hue_slider;
     hue_slider.setColor(demo_color);
     hue_slider.resize(192, hue_slider.sizeHint().height());
-//     hue_slider.setInvertedAppearance(true);
 //     hue_slider.setOrientation(Qt::Vertical);
     screenshot(hue_slider);
 

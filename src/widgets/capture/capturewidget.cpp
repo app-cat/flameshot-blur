@@ -642,8 +642,7 @@ void CaptureWidget::showColorPicker(const QPoint& pos)
 
 bool CaptureWidget::startDrawObjectTool(const QPoint& pos)
 {
-    if (activeButtonToolType() != CaptureTool::NONE &&
-        activeButtonToolType() != CaptureTool::TYPE_MOVESELECTION) {
+    if (activeButtonToolType() != CaptureTool::NONE) {
         if (commitCurrentTool()) {
             return false;
         }
@@ -1307,12 +1306,12 @@ void CaptureWidget::handleToolSignal(CaptureTool::Request r)
                 Flameshot::instance()->setExternalWidget(true);
             }
             break;
-        case CaptureTool::REQ_INCREASE_TOOL_SIZE:
-            setToolSize(m_context.toolSize + 1);
-            break;
-        case CaptureTool::REQ_DECREASE_TOOL_SIZE:
-            setToolSize(m_context.toolSize - 1);
-            break;
+        // case CaptureTool::REQ_INCREASE_TOOL_SIZE:
+        //     setToolSize(m_context.toolSize + 1);
+        //     break;
+        // case CaptureTool::REQ_DECREASE_TOOL_SIZE:
+        //     setToolSize(m_context.toolSize - 1);
+        //     break;
         default:
             break;
     }
@@ -1544,14 +1543,11 @@ void CaptureWidget::updateCursor()
 {
     if (m_colorPicker && m_colorPicker->isVisible()) {
         setCursor(Qt::ArrowCursor);
-    } else if (m_activeButton != nullptr &&
-               activeButtonToolType() != CaptureTool::TYPE_MOVESELECTION) {
+    } else if (m_activeButton != nullptr) {
         setCursor(Qt::CrossCursor);
     } else if (m_selection->getMouseSide(mapFromGlobal(QCursor::pos())) !=
                SelectionWidget::NO_SIDE) {
         setCursor(m_selection->cursor());
-    } else if (activeButtonToolType() == CaptureTool::TYPE_MOVESELECTION) {
-        setCursor(Qt::OpenHandCursor);
     } else {
         setCursor(Qt::CrossCursor);
     }
@@ -1560,16 +1556,12 @@ void CaptureWidget::updateCursor()
 void CaptureWidget::updateSelectionState()
 {
     auto toolType = activeButtonToolType();
-    if (toolType == CaptureTool::TYPE_MOVESELECTION) {
-        m_selection->setIdleCentralCursor(Qt::OpenHandCursor);
-        m_selection->setIgnoreMouse(false);
+   
+    m_selection->setIdleCentralCursor(Qt::ArrowCursor);
+    if (toolType == CaptureTool::NONE) {
+        m_selection->setIgnoreMouse(m_panel->activeLayerIndex() != -1);
     } else {
-        m_selection->setIdleCentralCursor(Qt::ArrowCursor);
-        if (toolType == CaptureTool::NONE) {
-            m_selection->setIgnoreMouse(m_panel->activeLayerIndex() != -1);
-        } else {
-            m_selection->setIgnoreMouse(true);
-        }
+        m_selection->setIgnoreMouse(true);
     }
 }
 

@@ -16,7 +16,6 @@ target_sources(
         imgupload/imguploadermanager.cpp
 )
 target_sources(flameshot PRIVATE line/linetool.h line/linetool.cpp)
-target_sources(flameshot PRIVATE move/movetool.h move/movetool.cpp)
 target_sources(flameshot PRIVATE pencil/penciltool.h pencil/penciltool.cpp)
 target_sources(
   flameshot
@@ -27,7 +26,6 @@ target_sources(
 target_sources(flameshot PRIVATE rectangle/rectangletool.h rectangle/rectangletool.cpp)
 target_sources(flameshot PRIVATE save/savetool.h save/savetool.cpp)
 target_sources(flameshot PRIVATE accept/accepttool.h accept/accepttool.cpp)
-target_sources(flameshot PRIVATE invert/inverttool.h invert/inverttool.cpp)
 target_sources(flameshot PRIVATE selection/selectiontool.h selection/selectiontool.cpp)
 target_sources(
   flameshot

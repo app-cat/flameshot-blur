@@ -1609,19 +1609,6 @@ Please solve them manually in the configuration file.</source>
     </message>
 </context>
 <context>
-    <name>InvertTool</name>
-    <message>
-        <location filename="../../src/tools/invert/inverttool.cpp" line="25"/>
-        <source>Invert</source>
-        <translation>反色</translation>
-    </message>
-    <message>
-        <location filename="../../src/tools/invert/inverttool.cpp" line="35"/>
-        <source>Set Inverter as the paint tool</source>
-        <translation>将反色设置为绘画工具</translation>
-    </message>
-</context>
-<context>
     <name>LineTool</name>
     <message>
         <location filename="../../src/tools/line/linetool.cpp" line="22"/>
@@ -1632,19 +1619,6 @@ Please solve them manually in the configuration file.</source>
         <location filename="../../src/tools/line/linetool.cpp" line="32"/>
         <source>Set the Line as the paint tool</source>
         <translation>将直线设置为绘画工具</translation>
-    </message>
-</context>
-<context>
-    <name>MoveTool</name>
-    <message>
-        <location filename="../../src/tools/move/movetool.cpp" line="23"/>
-        <source>Move</source>
-        <translation>移动</translation>
-    </message>
-    <message>
-        <location filename="../../src/tools/move/movetool.cpp" line="33"/>
-        <source>Move the selection area</source>
-        <translation>移动选择区域</translation>
     </message>
 </context>
 <context>

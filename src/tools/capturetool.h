@@ -31,7 +31,6 @@ public:
         TYPE_RECTANGLE = 4,
         TYPE_CIRCLE = 5,
         TYPE_SELECTIONINDICATOR = 7,
-        TYPE_MOVESELECTION = 8,
         TYPE_UNDO = 9,
         TYPE_COPY = 10,
         TYPE_SAVE = 11,
@@ -41,7 +40,6 @@ public:
         TYPE_PIN = 17,
         TYPE_TEXT = 18,
         TYPE_CIRCLECOUNT = 19,
-        TYPE_INVERT = 22,
         TYPE_ACCEPT = 23,
     };
     Q_ENUM(Type);
@@ -64,11 +62,7 @@ public:
         // Instance this->widget()'s widget inside the editor under the mouse.
         REQ_ADD_CHILD_WIDGET,
         // Instance this->widget()'s widget which handles its own lifetime.
-        REQ_ADD_EXTERNAL_WIDGETS,
-        // increase tool size for all tools
-        REQ_INCREASE_TOOL_SIZE,
-        // decrease tool size for all tools
-        REQ_DECREASE_TOOL_SIZE
+        REQ_ADD_EXTERNAL_WIDGETS
     };
 
     explicit CaptureTool(QObject* parent = nullptr)

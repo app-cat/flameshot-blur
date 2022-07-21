@@ -25,7 +25,7 @@ QString MoveTool::name() const
 
 CaptureTool::Type MoveTool::type() const
 {
-    return CaptureTool::TYPE_MOVESELECTION;
+    return CaptureTool::NONE;
 }
 
 QString MoveTool::description() const
