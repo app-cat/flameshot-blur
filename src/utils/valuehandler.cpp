@@ -326,8 +326,6 @@ QVariant ButtonList::process(const QVariant& val)
 QVariant ButtonList::fallback()
 {
     auto buttons = CaptureToolButton::getIterableButtonTypes();
-    buttons.removeOne(CaptureTool::TYPE_SIZEDECREASE);
-    buttons.removeOne(CaptureTool::TYPE_SIZEINCREASE);
     sortButtons(buttons);
     return QVariant::fromValue(buttons);
 }

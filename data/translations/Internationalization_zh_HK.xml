@@ -2283,32 +2283,6 @@ You may need to escape the &apos;#&apos; sign as in &apos;\#FFF&apos;</translati
     </message>
 </context>
 <context>
-    <name>SizeDecreaseTool</name>
-    <message>
-        <location filename="../../src/tools/sizedecrease/sizedecreasetool.cpp" line="37"/>
-        <source>Decrease Tool Size</source>
-        <translation>Decrease Tool Size</translation>
-    </message>
-    <message>
-        <location filename="../../src/tools/sizedecrease/sizedecreasetool.cpp" line="47"/>
-        <source>Decrease the size of the other tools</source>
-        <translation>Decrease the size of the other tools</translation>
-    </message>
-</context>
-<context>
-    <name>SizeIncreaseTool</name>
-    <message>
-        <location filename="../../src/tools/sizeincrease/sizeincreasetool.cpp" line="37"/>
-        <source>Increase Tool Size</source>
-        <translation>Increase Tool Size</translation>
-    </message>
-    <message>
-        <location filename="../../src/tools/sizeincrease/sizeincreasetool.cpp" line="47"/>
-        <source>Increase the size of the other tools</source>
-        <translation>Increase the size of the other tools</translation>
-    </message>
-</context>
-<context>
     <name>SizeIndicatorTool</name>
     <message>
         <location filename="../../src/tools/sizeindicator/sizeindicatortool.cpp" line="23"/>

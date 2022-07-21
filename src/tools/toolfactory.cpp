@@ -18,8 +18,6 @@
 #include "rectangle/rectangletool.h"
 #include "save/savetool.h"
 #include "selection/selectiontool.h"
-#include "sizedecrease/sizedecreasetool.h"
-#include "sizeincrease/sizeincreasetool.h"
 #include "text/texttool.h"
 #include "undo/undotool.h"
 
@@ -50,8 +48,6 @@ CaptureTool* ToolFactory::CreateTool(CaptureTool::Type t, QObject* parent)
         if_TYPE_return_TOOL(TYPE_PIN, PinTool);
         if_TYPE_return_TOOL(TYPE_TEXT, TextTool);
         if_TYPE_return_TOOL(TYPE_CIRCLECOUNT, CircleCountTool);
-        if_TYPE_return_TOOL(TYPE_SIZEINCREASE, SizeIncreaseTool);
-        if_TYPE_return_TOOL(TYPE_SIZEDECREASE, SizeDecreaseTool);
         if_TYPE_return_TOOL(TYPE_INVERT, InvertTool);
         if_TYPE_return_TOOL(TYPE_ACCEPT, AcceptTool);
         default:

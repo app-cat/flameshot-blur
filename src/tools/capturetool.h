@@ -41,8 +41,6 @@ public:
         TYPE_PIN = 17,
         TYPE_TEXT = 18,
         TYPE_CIRCLECOUNT = 19,
-        TYPE_SIZEINCREASE = 20,
-        TYPE_SIZEDECREASE = 21,
         TYPE_INVERT = 22,
         TYPE_ACCEPT = 23,
     };
