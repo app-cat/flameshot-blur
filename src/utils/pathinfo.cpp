@@ -8,12 +8,12 @@
 
 const QString PathInfo::whiteIconPath()
 {
-    return QStringLiteral(":/img/material/white/");
+    return QStringLiteral(":/img/material/");
 }
 
 const QString PathInfo::blackIconPath()
 {
-    return QStringLiteral(":/img/material/black/");
+    return QStringLiteral(":/img/material/");
 }
 
 QStringList PathInfo::translationsPaths()
