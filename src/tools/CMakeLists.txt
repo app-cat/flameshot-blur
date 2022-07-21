@@ -17,17 +17,6 @@ target_sources(
         imgupload/imguploadermanager.h
         imgupload/imguploadermanager.cpp
 )
-target_sources(
-  flameshot
-  PRIVATE launcher/applaunchertool.h
-          launcher/applauncherwidget.h
-          launcher/launcheritemdelegate.h
-          launcher/terminallauncher.h
-          launcher/applaunchertool.cpp
-          launcher/applauncherwidget.cpp
-          launcher/launcheritemdelegate.cpp
-          launcher/openwithprogram.cpp
-          launcher/terminallauncher.cpp)
 target_sources(flameshot PRIVATE line/linetool.h line/linetool.cpp)
 target_sources(flameshot PRIVATE move/movetool.h move/movetool.cpp)
 target_sources(flameshot PRIVATE pencil/penciltool.h pencil/penciltool.cpp)

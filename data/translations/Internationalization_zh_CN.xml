@@ -38,53 +38,6 @@
     </message>
 </context>
 <context>
-    <name>AppLauncher</name>
-    <message>
-        <location filename="../../src/tools/launcher/applaunchertool.cpp" line="23"/>
-        <source>App Launcher</source>
-        <translation>应用启动器</translation>
-    </message>
-    <message>
-        <location filename="../../src/tools/launcher/applaunchertool.cpp" line="33"/>
-        <source>Choose an app to open the capture</source>
-        <translation>选择一个应用打开此截图</translation>
-    </message>
-</context>
-<context>
-    <name>AppLauncherWidget</name>
-    <message>
-        <location filename="../../src/tools/launcher/applauncherwidget.cpp" line="43"/>
-        <source>Open With</source>
-        <translation>打开</translation>
-    </message>
-    <message>
-        <location filename="../../src/tools/launcher/applauncherwidget.cpp" line="58"/>
-        <source>Launch in terminal</source>
-        <translation>在终端中启动</translation>
-    </message>
-    <message>
-        <location filename="../../src/tools/launcher/applauncherwidget.cpp" line="59"/>
-        <source>Keep open after selection</source>
-        <translation>选择后保持此窗口打开</translation>
-    </message>
-    <message>
-        <location filename="../../src/tools/launcher/applauncherwidget.cpp" line="95"/>
-        <location filename="../../src/tools/launcher/applauncherwidget.cpp" line="110"/>
-        <source>Error</source>
-        <translation>错误</translation>
-    </message>
-    <message>
-        <location filename="../../src/tools/launcher/applauncherwidget.cpp" line="110"/>
-        <source>Unable to launch in terminal.</source>
-        <translation>无法在终端中启动。</translation>
-    </message>
-    <message>
-        <location filename="../../src/tools/launcher/applauncherwidget.cpp" line="95"/>
-        <source>Unable to write in</source>
-        <translation>无法写入</translation>
-    </message>
-</context>
-<context>
     <name>ArrowTool</name>
     <message>
         <location filename="../../src/tools/arrow/arrowtool.cpp" line="76"/>
@@ -2017,16 +1970,6 @@ You may need to escape the &apos;#&apos; sign as in &apos;\#FFF&apos;</source>
         <location filename="../../src/main.cpp" line="272"/>
         <source>Invalid value, it must be defined as &apos;true&apos; or &apos;false&apos;</source>
         <translation>无效的值，必须指定“true”或“false”</translation>
-    </message>
-    <message>
-        <location filename="../../src/tools/launcher/openwithprogram.cpp" line="30"/>
-        <source>Error</source>
-        <translation>错误</translation>
-    </message>
-    <message>
-        <location filename="../../src/tools/launcher/openwithprogram.cpp" line="31"/>
-        <source>Unable to write in</source>
-        <translation>无法写入</translation>
     </message>
     <message>
         <location filename="../../src/core/flameshot.cpp" line="148"/>
