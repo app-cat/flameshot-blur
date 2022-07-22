@@ -178,8 +178,7 @@ int main(int argc, char* argv[])
       { "c", "clipboard" }, QObject::tr("Save the capture to the clipboard"));
     CommandOption pinOption("pin",
                             QObject::tr("Pin the capture to the screen"));
-    CommandOption uploadOption({ "u", "upload" },
-                               QObject::tr("Upload screenshot"));
+
     CommandOption delayOption({ "d", "delay" },
                               QObject::tr("Delay time in milliseconds"),
                               QStringLiteral("milliseconds"));
@@ -306,7 +305,6 @@ int main(int argc, char* argv[])
                         useLastRegionOption,
                         rawImageOption,
                         selectionOption,
-                        uploadOption,
                         pinOption,
                         acceptOnSelectOption },
                       guiArgument);
@@ -316,15 +314,13 @@ int main(int argc, char* argv[])
                         delayOption,
                         regionOption,
                         rawImageOption,
-                        uploadOption,
                         pinOption },
                       screenArgument);
     parser.AddOptions({ pathOption,
                         clipboardOption,
                         delayOption,
                         regionOption,
-                        rawImageOption,
-                        uploadOption },
+                        rawImageOption},
                       fullArgument);
     parser.AddOptions({ autostartOption,
                         filenameOption,
@@ -378,7 +374,6 @@ int main(int argc, char* argv[])
         bool raw = parser.isSet(rawImageOption);
         bool printGeometry = parser.isSet(selectionOption);
         bool pin = parser.isSet(pinOption);
-        bool upload = parser.isSet(uploadOption);
         bool acceptOnSelect = parser.isSet(acceptOnSelectOption);
         CaptureRequest req(CaptureRequest::GRAPHICAL_MODE, delay, path);
         if (!region.isEmpty()) {
@@ -402,13 +397,11 @@ int main(int argc, char* argv[])
         if (pin) {
             req.addTask(CaptureRequest::PIN);
         }
-        if (upload) {
-            req.addTask(CaptureRequest::UPLOAD);
-        }
+      
         if (acceptOnSelect) {
             req.addTask(CaptureRequest::ACCEPT_ON_SELECT);
             if (!clipboard && !raw && path.isEmpty() && !printGeometry &&
-                !pin && !upload) {
+                !pin) {
                 req.addSaveTask();
             }
         }
@@ -428,7 +421,6 @@ int main(int argc, char* argv[])
         QString region = parser.value(regionOption);
         bool clipboard = parser.isSet(clipboardOption);
         bool raw = parser.isSet(rawImageOption);
-        bool upload = parser.isSet(uploadOption);
         // Not a valid command
 
         CaptureRequest req(CaptureRequest::FULLSCREEN_MODE, delay);
@@ -444,10 +436,7 @@ int main(int argc, char* argv[])
         if (raw) {
             req.addTask(CaptureRequest::PRINT_RAW);
         }
-        if (upload) {
-            req.addTask(CaptureRequest::UPLOAD);
-        }
-        if (!clipboard && path.isEmpty() && !raw && !upload) {
+        if (!clipboard && path.isEmpty() && !raw) {
             req.addSaveTask();
         }
         requestCaptureAndWait(req);
@@ -470,7 +459,6 @@ int main(int argc, char* argv[])
         bool clipboard = parser.isSet(clipboardOption);
         bool raw = parser.isSet(rawImageOption);
         bool pin = parser.isSet(pinOption);
-        bool upload = parser.isSet(uploadOption);
 
         CaptureRequest req(CaptureRequest::SCREEN_MODE, delay, screenNumber);
         if (!region.isEmpty()) {
@@ -495,11 +483,8 @@ int main(int argc, char* argv[])
         if (pin) {
             req.addTask(CaptureRequest::PIN);
         }
-        if (upload) {
-            req.addTask(CaptureRequest::UPLOAD);
-        }
 
-        if (!clipboard && !raw && path.isEmpty() && !pin && !upload) {
+        if (!clipboard && !raw && path.isEmpty() && !pin) {
             req.addSaveTask();
         }
 

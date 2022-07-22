@@ -3,24 +3,20 @@
 
 #include "flameshot.h"
 #include "flameshotdaemon.h"
-#if defined(Q_OS_MACOS)
-#include "external/QHotkey/QHotkey"
-#endif
+// #if defined(Q_OS_MACOS)
+// #include "external/QHotkey/QHotkey"
+// #endif
 
 #include "abstractlogger.h"
 #include "screenshotsaver.h"
 #include "src/config/configresolver.h"
 #include "src/config/configwindow.h"
 #include "src/core/qguiappcurrentscreen.h"
-#include "src/tools/imgupload/imguploadermanager.h"
-#include "src/tools/imgupload/storages/imguploaderbase.h"
 #include "src/utils/confighandler.h"
 #include "src/utils/screengrabber.h"
 #include "src/widgets/capture/capturewidget.h"
 #include "src/widgets/capturelauncher.h"
-#include "src/widgets/imguploaddialog.h"
 #include "src/widgets/infowindow.h"
-#include "src/widgets/uploadhistory.h"
 #include <QApplication>
 #include <QBuffer>
 #include <QDebug>
@@ -38,35 +34,10 @@
 Flameshot::Flameshot()
   : m_captureWindow(nullptr)
   , m_haveExternalWidget(false)
-#if defined(Q_OS_MACOS)
-  , m_HotkeyScreenshotCapture(nullptr)
-  , m_HotkeyScreenshotHistory(nullptr)
-#endif
+
 {
     QString StyleSheet = CaptureButton::globalStyleSheet();
     qApp->setStyleSheet(StyleSheet);
-
-#if defined(Q_OS_MACOS)
-    // Try to take a test screenshot, MacOS will request a "Screen Recording"
-    // permissions on the first run. Otherwise it will be hidden under the
-    // CaptureWidget
-    QScreen* currentScreen = QGuiAppCurrentScreen().currentScreen();
-    currentScreen->grabWindow(QApplication::desktop()->winId(), 0, 0, 1, 1);
-
-    // set global shortcuts for MacOS
-    m_HotkeyScreenshotCapture = new QHotkey(
-      QKeySequence(ConfigHandler().shortcut("TAKE_SCREENSHOT")), true, this);
-    QObject::connect(m_HotkeyScreenshotCapture,
-                     &QHotkey::activated,
-                     qApp,
-                     [this]() { gui(); });
-    m_HotkeyScreenshotHistory = new QHotkey(
-      QKeySequence(ConfigHandler().shortcut("SCREENSHOT_HISTORY")), true, this);
-    QObject::connect(m_HotkeyScreenshotHistory,
-                     &QHotkey::activated,
-                     qApp,
-                     [this]() { history(); });
-#endif
 }
 
 Flameshot* Flameshot::instance()
@@ -238,23 +209,7 @@ void Flameshot::info()
     }
 }
 
-void Flameshot::history()
-{
-    static UploadHistory* historyWidget = nullptr;
-    if (historyWidget == nullptr) {
-        historyWidget = new UploadHistory;
-        historyWidget->loadHistory();
-        connect(historyWidget, &QObject::destroyed, this, []() {
-            historyWidget = nullptr;
-        });
-    }
-    historyWidget->show();
 
-#if defined(Q_OS_MACOS)
-    historyWidget->activateWindow();
-    historyWidget->raise();
-#endif
-}
 
 QVersionNumber Flameshot::getVersion()
 {
@@ -380,38 +335,6 @@ void Flameshot::exportCapture(QPixmap capture,
         }
     }
 
-    if (tasks & CR::UPLOAD) {
-        if (!ConfigHandler().uploadWithoutConfirmation()) {
-            auto* dialog = new ImgUploadDialog();
-            if (dialog->exec() == QDialog::Rejected) {
-                return;
-            }
-        }
-
-        ImgUploaderBase* widget = ImgUploaderManager().uploader(capture);
-        widget->show();
-        widget->activateWindow();
-        // NOTE: lambda can't capture 'this' because it might be destroyed later
-        CR::ExportTask tasks = tasks;
-        QObject::connect(
-          widget, &ImgUploaderBase::uploadOk, [=](const QUrl& url) {
-              if (ConfigHandler().copyAndCloseAfterUpload()) {
-                  if (!(tasks & CR::COPY)) {
-                      FlameshotDaemon::copyToClipboard(
-                        url.toString(), tr("URL copied to clipboard."));
-                      widget->close();
-                  } else {
-                      widget->showPostUploadDialog();
-                  }
-              } else {
-                  widget->showPostUploadDialog();
-              }
-          });
-    }
-
-    if (!(tasks & CR::UPLOAD)) {
-        emit captureTaken(capture);
-    }
 }
 
 void Flameshot::setExternalWidget(bool b)

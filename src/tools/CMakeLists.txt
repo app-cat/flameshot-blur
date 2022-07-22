@@ -4,17 +4,6 @@ target_sources(flameshot PRIVATE circle/circletool.h circle/circletool.cpp)
 target_sources(flameshot PRIVATE circlecount/circlecounttool.h circlecount/circlecounttool.cpp)
 target_sources(flameshot PRIVATE copy/copytool.h copy/copytool.cpp)
 target_sources(flameshot PRIVATE exit/exittool.h exit/exittool.cpp)
-target_sources(
-  flameshot
-        PRIVATE imgupload/storages/imgur/imguruploader.h
-        imgupload/storages/imgur/imguruploader.cpp
-        imgupload/storages/imguploaderbase.h
-        imgupload/storages/imguploaderbase.cpp
-        imgupload/imguploadertool.h
-        imgupload/imguploadertool.cpp
-        imgupload/imguploadermanager.h
-        imgupload/imguploadermanager.cpp
-)
 target_sources(flameshot PRIVATE line/linetool.h line/linetool.cpp)
 target_sources(flameshot PRIVATE pencil/penciltool.h pencil/penciltool.cpp)
 target_sources(

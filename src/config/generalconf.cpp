@@ -22,7 +22,6 @@
 
 GeneralConf::GeneralConf(QWidget* parent)
   : QWidget(parent)
-  , m_historyConfirmationToDelete(nullptr)
   , m_undoLimit(nullptr)
 {
     m_layout = new QVBoxLayout(this);
@@ -48,13 +47,8 @@ GeneralConf::GeneralConf(QWidget* parent)
     initCopyOnDoubleClick();
     initSaveAfterCopy();
     initCopyPathAfterSave();
-    initCopyAndCloseAfterUpload();
-    initUploadWithoutConfirmation();
-    initHistoryConfirmationToDelete();
     initAntialiasingPinZoom();
-    initUploadHistoryMax();
     initUndoLimit();
-    initUploadClientSecret();
     initPredefinedColorPaletteLarge();
     initShowSelectionGeometry();
 
@@ -74,14 +68,10 @@ void GeneralConf::_updateComponents(bool allowEmptySavePath)
     m_sidePanelButton->setChecked(config.showSidePanelButton());
     m_sysNotifications->setChecked(config.showDesktopNotification());
     m_autostart->setChecked(config.startupLaunch());
-    m_copyAndCloseAfterUpload->setChecked(config.copyAndCloseAfterUpload());
     m_saveAfterCopy->setChecked(config.saveAfterCopy());
     m_copyPathAfterSave->setChecked(config.copyPathAfterSave());
     m_antialiasingPinZoom->setChecked(config.antialiasingPinZoom());
     m_useJpgForClipboard->setChecked(config.useJpgForClipboard());
-    m_uploadWithoutConfirmation->setChecked(config.uploadWithoutConfirmation());
-    m_historyConfirmationToDelete->setChecked(
-      config.historyConfirmationToDelete());
     m_checkForUpdates->setChecked(config.checkForUpdates());
     m_allowMultipleGuiInstances->setChecked(config.allowMultipleGuiInstances());
     m_showMagnifier->setChecked(config.showMagnifier());
@@ -96,7 +86,6 @@ void GeneralConf::_updateComponents(bool allowEmptySavePath)
       config.predefinedColorPaletteLarge());
     m_showStartupLaunchMessage->setChecked(config.showStartupLaunchMessage());
     m_screenshotPathFixedCheck->setChecked(config.savePathFixed());
-    m_uploadHistoryMax->setValue(config.uploadHistoryMax());
     m_undoLimit->setValue(config.undoLimit());
 
     if (allowEmptySavePath || !config.savePath().isEmpty()) {
@@ -294,20 +283,7 @@ void GeneralConf::initShowTrayIcon()
 #endif
 }
 
-void GeneralConf::initHistoryConfirmationToDelete()
-{
-    m_historyConfirmationToDelete = new QCheckBox(
-      tr("Confirmation required to delete screenshot from the latest uploads"),
-      this);
-    m_historyConfirmationToDelete->setToolTip(
-      tr("Ask for confirmation to delete screenshot from the latest uploads"));
-    m_scrollAreaLayout->addWidget(m_historyConfirmationToDelete);
 
-    connect(m_historyConfirmationToDelete,
-            &QCheckBox::clicked,
-            this,
-            &GeneralConf::historyConfirmationToDelete);
-}
 
 void GeneralConf::initConfigButtons()
 {
@@ -428,18 +404,6 @@ void GeneralConf::initCopyOnDoubleClick()
     });
 }
 
-void GeneralConf::initCopyAndCloseAfterUpload()
-{
-    m_copyAndCloseAfterUpload =
-      new QCheckBox(tr("Copy URL after upload"), this);
-    m_copyAndCloseAfterUpload->setToolTip(
-      tr("Copy URL and close window after uploading was successful"));
-    m_scrollAreaLayout->addWidget(m_copyAndCloseAfterUpload);
-
-    connect(m_copyAndCloseAfterUpload, &QCheckBox::clicked, [](bool checked) {
-        ConfigHandler().setCopyAndCloseAfterUpload(checked);
-    });
-}
 
 void GeneralConf::initSaveAfterCopy()
 {
@@ -510,63 +474,7 @@ void GeneralConf::initSaveAfterCopy()
     vboxLayout->addLayout(extensionLayout);
 }
 
-void GeneralConf::historyConfirmationToDelete(bool checked)
-{
-    ConfigHandler().setHistoryConfirmationToDelete(checked);
-}
 
-void GeneralConf::initUploadHistoryMax()
-{
-    auto* box = new QGroupBox(tr("Latest Uploads Max Size"));
-    box->setFlat(true);
-    m_layout->addWidget(box);
-
-    auto* vboxLayout = new QVBoxLayout();
-    box->setLayout(vboxLayout);
-
-    m_uploadHistoryMax = new QSpinBox(this);
-    m_uploadHistoryMax->setMaximum(50);
-    QString foreground = this->palette().windowText().color().name();
-    m_uploadHistoryMax->setStyleSheet(
-      QStringLiteral("color: %1").arg(foreground));
-
-    connect(m_uploadHistoryMax,
-            SIGNAL(valueChanged(int)),
-            this,
-            SLOT(uploadHistoryMaxChanged(int)));
-    vboxLayout->addWidget(m_uploadHistoryMax);
-}
-
-void GeneralConf::initUploadClientSecret()
-{
-    auto* box = new QGroupBox(tr("Imgur Application Client ID"));
-    box->setFlat(true);
-    m_layout->addWidget(box);
-
-    auto* vboxLayout = new QVBoxLayout();
-    box->setLayout(vboxLayout);
-
-    m_uploadClientKey = new QLineEdit(this);
-    QString foreground = this->palette().windowText().color().name();
-    m_uploadClientKey->setStyleSheet(
-      QStringLiteral("color: %1").arg(foreground));
-    m_uploadClientKey->setText(ConfigHandler().uploadClientSecret());
-    connect(m_uploadClientKey,
-            SIGNAL(editingFinished()),
-            this,
-            SLOT(uploadClientKeyEdited()));
-    vboxLayout->addWidget(m_uploadClientKey);
-}
-
-void GeneralConf::uploadClientKeyEdited()
-{
-    ConfigHandler().setUploadClientSecret(m_uploadClientKey->text());
-}
-
-void GeneralConf::uploadHistoryMaxChanged(int max)
-{
-    ConfigHandler().setUploadHistoryMax(max);
-}
 
 void GeneralConf::initUndoLimit()
 {
@@ -650,17 +558,7 @@ void GeneralConf::initAntialiasingPinZoom()
     });
 }
 
-void GeneralConf::initUploadWithoutConfirmation()
-{
-    m_uploadWithoutConfirmation =
-      new QCheckBox(tr("Upload image without confirmation"), this);
-    m_uploadWithoutConfirmation->setToolTip(
-      tr("Upload image without confirmation"));
-    m_scrollAreaLayout->addWidget(m_uploadWithoutConfirmation);
-    connect(m_uploadWithoutConfirmation, &QCheckBox::clicked, [](bool checked) {
-        ConfigHandler().setUploadWithoutConfirmation(checked);
-    });
-}
+
 
 const QString GeneralConf::chooseFolder(const QString pathDefault)
 {

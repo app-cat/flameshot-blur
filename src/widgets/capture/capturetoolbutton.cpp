@@ -145,15 +145,12 @@ static std::map<CaptureTool::Type, int> buttonTypeOrder
       { CaptureTool::TYPE_CIRCLECOUNT, 10 },
       { CaptureTool::TYPE_SELECTIONINDICATOR, 11 },
       { CaptureTool::TYPE_UNDO, 13 },
-      { CaptureTool::TYPE_COPY, 15 },
-      { CaptureTool::TYPE_SAVE, 16 }, { CaptureTool::TYPE_IMAGEUPLOADER, 17 },
-      { CaptureTool::TYPE_ACCEPT, 18 },
-#if !defined(Q_OS_MACOS)
-      { CaptureTool::TYPE_EXIT, 20 },
       { CaptureTool::TYPE_PIN, 21 },
-#else
-      { CaptureTool::TYPE_EXIT, 19 }, { CaptureTool::TYPE_PIN, 20 },
-#endif
+      { CaptureTool::TYPE_ACCEPT, 18 },
+      { CaptureTool::TYPE_SAVE, 16 },
+      { CaptureTool::TYPE_EXIT, 20 },
+      { CaptureTool::TYPE_COPY, 15 },
+
 
 };
 
@@ -173,7 +170,6 @@ QList<CaptureTool::Type> CaptureToolButton::iterableButtonTypes = {
     CaptureTool::TYPE_UNDO,
     CaptureTool::TYPE_COPY,
     CaptureTool::TYPE_SAVE,          CaptureTool::TYPE_EXIT,
-    CaptureTool::TYPE_IMAGEUPLOADER,
     CaptureTool::TYPE_PIN,
     CaptureTool::TYPE_ACCEPT,
 };

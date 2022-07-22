@@ -12,11 +12,7 @@ class CaptureWidget;
 class ConfigWindow;
 class InfoWindow;
 class CaptureLauncher;
-class UploadHistory;
-#if (defined(Q_OS_MAC) || defined(Q_OS_MAC64) || defined(Q_OS_MACOS) ||        \
-     defined(Q_OS_MACX))
-class QHotkey;
-#endif
+
 
 class Flameshot : public QObject
 {
@@ -40,7 +36,6 @@ public slots:
     void config();
 
     void info();
-    void history();
 
     QVersionNumber getVersion();
 
@@ -70,10 +65,4 @@ private:
     QPointer<InfoWindow> m_infoWindow;
     QPointer<CaptureLauncher> m_launcherWindow;
     QPointer<ConfigWindow> m_configWindow;
-
-#if (defined(Q_OS_MAC) || defined(Q_OS_MAC64) || defined(Q_OS_MACOS) ||        \
-     defined(Q_OS_MACX))
-    QHotkey* m_HotkeyScreenshotCapture;
-    QHotkey* m_HotkeyScreenshotHistory;
-#endif
 };

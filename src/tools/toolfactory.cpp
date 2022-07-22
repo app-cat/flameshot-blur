@@ -8,7 +8,6 @@
 #include "circlecount/circlecounttool.h"
 #include "copy/copytool.h"
 #include "exit/exittool.h"
-#include "imgupload/imguploadertool.h"
 #include "line/linetool.h"
 #include "pencil/penciltool.h"
 #include "pin/pintool.h"
@@ -40,7 +39,6 @@ CaptureTool* ToolFactory::CreateTool(CaptureTool::Type t, QObject* parent)
         if_TYPE_return_TOOL(TYPE_COPY, CopyTool);
         if_TYPE_return_TOOL(TYPE_SAVE, SaveTool);
         if_TYPE_return_TOOL(TYPE_EXIT, ExitTool);
-        if_TYPE_return_TOOL(TYPE_IMAGEUPLOADER, ImgUploaderTool);
         if_TYPE_return_TOOL(TYPE_PIXELATE, PixelateTool);
         if_TYPE_return_TOOL(TYPE_PIN, PinTool);
         if_TYPE_return_TOOL(TYPE_TEXT, TextTool);

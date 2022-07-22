@@ -23,7 +23,6 @@ _flameshot_gui_opts=(
     "--region[Screenshot region to select <WxH+X+Y or string>]"
     {-r,--raw}'[Print raw PNG capture]'
     {-g,--print-geometry}'[Print geometry of the selection in the format W H X Y. Does nothing if raw is specified]'
-    {-u,--upload}'[Upload screenshot]'
     "--pin[Pin the capture to the screen]"
     {-s,--accept-on-select}'[Accept capture as soon as a selection is made]'
 )
@@ -43,7 +42,6 @@ _flameshot_screen_opts=(
     {-d,--delay}'[Delay time in milliseconds]'
     "--region[Screenshot region to select <WxH+X+Y or string>]"
     {-r,--raw}'[Print raw PNG capture]'
-    {-u,--upload}'[Upload screenshot]'
     "--pin[Pin the capture to the screen]"
 )
 
@@ -61,7 +59,6 @@ _flameshot_full_opts=(
     {-d,--delay}'[Delay time in milliseconds]'
     "--region[Screenshot region to select <WxH+X+Y or string>]"
     {-r,--raw}'[Print raw PNG capture]'
-    {-u,--upload}'[Upload screenshot]'
 )
 
 _flameshot_full() {

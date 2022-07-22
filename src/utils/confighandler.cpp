@@ -78,7 +78,6 @@ static QMap<class QString, QSharedPointer<ValueHandler>>
     OPTION("showSidePanelButton"         ,Bool               ( false         )),
     OPTION("showDesktopNotification"     ,Bool               ( false         )),
     OPTION("disabledTrayIcon"            ,Bool               ( false         )),
-    OPTION("historyConfirmationToDelete" ,Bool               ( false         )),
     OPTION("checkForUpdates"             ,Bool               ( false         )),
     OPTION("allowMultipleGuiInstances"   ,Bool               ( false         )),
     OPTION("showMagnifier"               ,Bool               ( false         )),
@@ -86,17 +85,14 @@ static QMap<class QString, QSharedPointer<ValueHandler>>
     OPTION("autoCloseIdleDaemon"         ,Bool               ( true          )),
     OPTION("startupLaunch"               ,Bool               ( false         )),
     OPTION("showStartupLaunchMessage"    ,Bool               ( false         )),
-    OPTION("copyAndCloseAfterUpload"     ,Bool               ( false         )),
     OPTION("copyPathAfterSave"           ,Bool               ( false         )),
     OPTION("antialiasingPinZoom"         ,Bool               ( false         )),
     OPTION("useJpgForClipboard"          ,Bool               ( false         )),
-    OPTION("uploadWithoutConfirmation"   ,Bool               ( true          )),
     OPTION("saveAfterCopy"               ,Bool               ( false         )),
     OPTION("savePath"                    ,ExistingDir        (               )),
     OPTION("savePathFixed"               ,Bool               ( false         )),
     OPTION("saveAsFileExtension"         ,SaveFileExtension  (               )),
     OPTION("saveLastRegion"              ,Bool               (false          )),
-    OPTION("uploadHistoryMax"            ,LowerBoundedInt    (0, 25          )),
     OPTION("undoLimit"                   ,BoundedInt         (0, 999, 100    )),
   // Interface tab
     OPTION("uiColor"                     ,Color              ({100, 181, 246})),
@@ -117,7 +113,6 @@ static QMap<class QString, QSharedPointer<ValueHandler>>
     // NOTE: If another tool size is added besides drawThickness and
     // drawFontSize, remember to update ConfigHandler::toolSize
     OPTION("copyOnDoubleClick"           ,Bool               ( false         )),
-    OPTION("uploadClientSecret"          ,String             ( ""            )),
     OPTION("showSelectionGeometry"       , BoundedInt        (0,    5,   4   )),
     OPTION("showSelectionGeometryHideTime", LowerBoundedInt  (0,         3000))
 };
@@ -135,7 +130,6 @@ static QMap<QString, QSharedPointer<KeySequence>> recognizedShortcuts = {
     SHORTCUT("TYPE_SAVE"                ,                        ),
     SHORTCUT("TYPE_ACCEPT"              ,                        ),
     SHORTCUT("TYPE_EXIT"                ,                        ),
-    SHORTCUT("TYPE_IMAGEUPLOADER"       ,                        ),
     SHORTCUT("TYPE_PIXELATE"            ,                        ),
     SHORTCUT("TYPE_TEXT"                ,                        ),
     SHORTCUT("TYPE_TOGGLE_PANEL"        ,                        ),

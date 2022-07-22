@@ -41,8 +41,6 @@ private slots:
     void allowMultipleGuiInstancesChanged(bool checked);
     void autoCloseIdleDaemonChanged(bool checked);
     void autostartChanged(bool checked);
-    void historyConfirmationToDelete(bool checked);
-    void uploadHistoryMaxChanged(int max);
     void undoLimit(int limit);
     void saveAfterCopyChanged(bool checked);
     void changeSavePath();
@@ -50,7 +48,6 @@ private slots:
     void exportFileConfiguration();
     void resetConfiguration();
     void togglePathFixed();
-    void uploadClientKeyEdited();
     void useJpgForClipboardChanged(bool checked);
     void setSaveAsFileExtension(QString extension);
     void setGeometryLocation(int index);
@@ -65,10 +62,8 @@ private:
     void initAutostart();
     void initCheckForUpdates();
     void initConfigButtons();
-    void initCopyAndCloseAfterUpload();
     void initCopyOnDoubleClick();
     void initCopyPathAfterSave();
-    void initHistoryConfirmationToDelete();
     void initPredefinedColorPaletteLarge();
     void initSaveAfterCopy();
     void initScrollArea();
@@ -80,10 +75,7 @@ private:
     void initShowTrayIcon();
     void initSquareMagnifier();
     void initUndoLimit();
-    void initUploadWithoutConfirmation();
     void initUseJpgForClipboard();
-    void initUploadHistoryMax();
-    void initUploadClientSecret();
     void initSaveLastRegion();
     void initShowSelectionGeometry();
 
@@ -102,22 +94,17 @@ private:
     QCheckBox* m_autoCloseIdleDaemon;
     QCheckBox* m_autostart;
     QCheckBox* m_showStartupLaunchMessage;
-    QCheckBox* m_copyAndCloseAfterUpload;
     QCheckBox* m_copyPathAfterSave;
     QCheckBox* m_antialiasingPinZoom;
     QCheckBox* m_saveLastRegion;
-    QCheckBox* m_uploadWithoutConfirmation;
     QPushButton* m_importButton;
     QPushButton* m_exportButton;
     QPushButton* m_resetButton;
     QCheckBox* m_saveAfterCopy;
     QLineEdit* m_savePath;
-    QLineEdit* m_uploadClientKey;
     QPushButton* m_changeSaveButton;
     QCheckBox* m_screenshotPathFixedCheck;
-    QCheckBox* m_historyConfirmationToDelete;
     QCheckBox* m_useJpgForClipboard;
-    QSpinBox* m_uploadHistoryMax;
     QSpinBox* m_undoLimit;
     QComboBox* m_setSaveAsFileExtension;
     QCheckBox* m_predefinedColorPaletteLarge;

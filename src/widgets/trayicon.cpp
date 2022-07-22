@@ -127,39 +127,17 @@ void TrayIcon::initMenu()
     connect(
       infoAction, &QAction::triggered, Flameshot::instance(), &Flameshot::info);
 
-    m_appUpdates = new QAction(tr("Check for updates"), this);
-    connect(m_appUpdates,
-            &QAction::triggered,
-            FlameshotDaemon::instance(),
-            &FlameshotDaemon::checkForUpdates);
 
-    connect(FlameshotDaemon::instance(),
-            &FlameshotDaemon::newVersionAvailable,
-            this,
-            [this](QVersionNumber version) {
-                QString newVersion =
-                  tr("New version %1 is available").arg(version.toString());
-                m_appUpdates->setText(newVersion);
-            });
 
     QAction* quitAction = new QAction(tr("&Quit"), this);
     connect(quitAction, &QAction::triggered, qApp, &QCoreApplication::quit);
 
-    // recent screenshots
-    QAction* recentAction = new QAction(tr("&Latest Uploads"), this);
-    connect(recentAction,
-            &QAction::triggered,
-            Flameshot::instance(),
-            &Flameshot::history);
 
     m_menu->addAction(captureAction);
     m_menu->addAction(launcherAction);
     m_menu->addSeparator();
-    m_menu->addAction(recentAction);
-    m_menu->addSeparator();
     m_menu->addAction(configAction);
     m_menu->addSeparator();
-    m_menu->addAction(m_appUpdates);
     m_menu->addAction(infoAction);
     m_menu->addSeparator();
     m_menu->addAction(quitAction);

@@ -3,7 +3,6 @@
 
 #include "capturerequest.h"
 #include "confighandler.h"
-#include "imgupload/imguploadermanager.h"
 #include "pinwidget.h"
 #include "src/config/cacheutils.h"
 #include "src/utils/screenshotsaver.h"

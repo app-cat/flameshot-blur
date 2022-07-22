@@ -94,21 +94,13 @@ public:
                          setShowStartupLaunchMessage,
                          bool)
     CONFIG_GETTER_SETTER(contrastOpacity, setContrastOpacity, int)
-    CONFIG_GETTER_SETTER(copyAndCloseAfterUpload,
-                         setCopyAndCloseAfterUpload,
-                         bool)
-    CONFIG_GETTER_SETTER(historyConfirmationToDelete,
-                         setHistoryConfirmationToDelete,
-                         bool)
-    CONFIG_GETTER_SETTER(uploadHistoryMax, setUploadHistoryMax, int)
+
     CONFIG_GETTER_SETTER(saveAfterCopy, setSaveAfterCopy, bool)
     CONFIG_GETTER_SETTER(copyPathAfterSave, setCopyPathAfterSave, bool)
     CONFIG_GETTER_SETTER(saveAsFileExtension, setSaveAsFileExtension, QString)
     CONFIG_GETTER_SETTER(antialiasingPinZoom, setAntialiasingPinZoom, bool)
     CONFIG_GETTER_SETTER(useJpgForClipboard, setUseJpgForClipboard, bool)
-    CONFIG_GETTER_SETTER(uploadWithoutConfirmation,
-                         setUploadWithoutConfirmation,
-                         bool)
+
     CONFIG_GETTER_SETTER(ignoreUpdateToVersion,
                          setIgnoreUpdateToVersion,
                          QString)
@@ -117,7 +109,6 @@ public:
     CONFIG_GETTER_SETTER(showMagnifier, setShowMagnifier, bool)
     CONFIG_GETTER_SETTER(squareMagnifier, setSquareMagnifier, bool)
     CONFIG_GETTER_SETTER(copyOnDoubleClick, setCopyOnDoubleClick, bool)
-    CONFIG_GETTER_SETTER(uploadClientSecret, setUploadClientSecret, QString)
     CONFIG_GETTER_SETTER(saveLastRegion, setSaveLastRegion, bool)
     CONFIG_GETTER_SETTER(showSelectionGeometry, setShowSelectionGeometry, int)
     // SPECIAL CASES
