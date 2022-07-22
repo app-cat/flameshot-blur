@@ -288,7 +288,6 @@ void CaptureWidget::initButtons()
         for (auto* buttonList : { &allButtonTypes, &visibleButtonTypes }) {
             buttonList->removeOne(CaptureTool::TYPE_SAVE);
             buttonList->removeOne(CaptureTool::TYPE_COPY);
-            buttonList->removeOne(CaptureTool::TYPE_IMAGEUPLOADER);
             buttonList->removeOne(CaptureTool::TYPE_PIN);
         }
     }

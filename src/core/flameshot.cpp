@@ -335,6 +335,10 @@ void Flameshot::exportCapture(QPixmap capture,
         }
     }
 
+    if (!(tasks & CR::UPLOAD)) {
+        emit captureTaken(capture);
+    }
+
 }
 
 void Flameshot::setExternalWidget(bool b)

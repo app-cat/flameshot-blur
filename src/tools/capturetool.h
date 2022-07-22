@@ -35,7 +35,6 @@ public:
         TYPE_COPY = 10,
         TYPE_SAVE = 11,
         TYPE_EXIT = 12,
-        TYPE_IMAGEUPLOADER = 13,
         TYPE_PIXELATE = 15,
         TYPE_PIN = 17,
         TYPE_TEXT = 18,
