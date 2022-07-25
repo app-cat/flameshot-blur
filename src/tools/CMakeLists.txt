@@ -18,10 +18,8 @@ target_sources(flameshot PRIVATE accept/accepttool.h accept/accepttool.cpp)
 target_sources(flameshot PRIVATE selection/selectiontool.h selection/selectiontool.cpp)
 target_sources(
   flameshot
-  PRIVATE text/textconfig.h
-          text/texttool.h
+  PRIVATE text/texttool.h
           text/textwidget.h
-          text/textconfig.cpp
           text/texttool.cpp
           text/textwidget.cpp)
 target_sources(flameshot PRIVATE undo/undotool.h undo/undotool.cpp)

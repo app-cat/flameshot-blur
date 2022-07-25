@@ -111,10 +111,6 @@ void AbstractTwoPointTool::onColorChanged(const QColor& c)
     m_color = c;
 }
 
-void AbstractTwoPointTool::onSizeChanged(int size)
-{
-    m_thickness = size;
-}
 
 void AbstractTwoPointTool::paintMousePreview(QPainter& painter,
                                              const CaptureContext& context)
@@ -128,7 +124,7 @@ void AbstractTwoPointTool::drawStart(const CaptureContext& context)
     onColorChanged(context.color);
     m_points.first = context.mousePos;
     m_points.second = context.mousePos;
-    onSizeChanged(context.toolSize);
+    // onSizeChanged(context.toolSize);
 }
 
 QPoint AbstractTwoPointTool::adjustedVector(QPoint v) const

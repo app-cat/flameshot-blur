@@ -30,7 +30,6 @@ public slots:
     void drawMove(const QPoint& p) override;
     void drawMoveWithAdjustment(const QPoint& p) override;
     void onColorChanged(const QColor& c) override;
-    void onSizeChanged(int size) override;
     virtual void drawStart(const CaptureContext& context) override;
 
 private:

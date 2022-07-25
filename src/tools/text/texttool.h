@@ -4,11 +4,9 @@
 #pragma once
 
 #include "src/tools/capturetool.h"
-#include "textconfig.h"
 #include <QPoint>
 #include <QPointer>
 class TextWidget;
-class TextConfig;
 
 class TextTool : public CaptureTool
 {
@@ -30,7 +28,6 @@ public:
     QString info() override;
 
     QWidget* widget() override;
-    QWidget* configurationWidget() override;
     CaptureTool* copy(QObject* parent = nullptr) override;
 
     void process(QPainter& painter, const QPixmap& pixmap) override;
@@ -53,30 +50,21 @@ public slots:
     void drawStart(const CaptureContext& context) override;
     void pressed(CaptureContext& context) override;
     void onColorChanged(const QColor& color) override;
-    void onSizeChanged(int size) override;
-    int size() const override { return m_size; };
+
 
 private slots:
     void updateText(const QString& string);
-    void updateFamily(const QString& string);
-    void updateFontUnderline(bool underlined);
-    void updateFontStrikeOut(bool strikeout);
-    void updateFontWeight(QFont::Weight weight);
-    void updateFontItalic(bool italic);
-    void updateAlignment(Qt::AlignmentFlag alignment);
 
 private:
     void closeEditor();
 
     QFont m_font;
-    Qt::AlignmentFlag m_alignment;
     QString m_text;
     QString m_textOld;
     int m_size;
     QColor m_color;
     QRect m_textArea;
     QPointer<TextWidget> m_widget;
-    QPointer<TextConfig> m_confW;
     QPoint m_currentPos;
 
     QString m_tempString;

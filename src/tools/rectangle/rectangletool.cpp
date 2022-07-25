@@ -59,7 +59,6 @@ void RectangleTool::process(QPainter& painter, const QPixmap& pixmap)
 void RectangleTool::drawStart(const CaptureContext& context)
 {
     AbstractTwoPointTool::drawStart(context);
-    onSizeChanged(context.toolSize);
 }
 
 void RectangleTool::pressed(CaptureContext& context)

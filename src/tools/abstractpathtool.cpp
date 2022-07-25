@@ -99,11 +99,6 @@ void AbstractPathTool::onColorChanged(const QColor& c)
     m_color = c;
 }
 
-void AbstractPathTool::onSizeChanged(int size)
-{
-    m_thickness = size;
-}
-
 void AbstractPathTool::addPoint(const QPoint& point)
 {
     if (m_pathArea.left() > point.x()) {

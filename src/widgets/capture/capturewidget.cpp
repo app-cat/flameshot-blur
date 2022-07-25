@@ -651,10 +651,6 @@ bool CaptureWidget::startDrawObjectTool(const QPoint& pos)
                 &CaptureWidget::colorChanged,
                 m_activeTool,
                 &CaptureTool::onColorChanged);
-        connect(this,
-                &CaptureWidget::toolSizeChanged,
-                m_activeTool,
-                &CaptureTool::onSizeChanged);
         connect(m_activeTool,
                 &CaptureTool::requestAction,
                 this,
@@ -1328,7 +1324,6 @@ void CaptureWidget::onToolSizeChanged(int t)
     CaptureTool* tool = activeButtonTool();
     if (tool && tool->showMousePreview()) {
         setCursor(Qt::BlankCursor);
-        tool->onSizeChanged(t);
     }
 
     // update tool size of object being drawn
@@ -1339,8 +1334,6 @@ void CaptureWidget::onToolSizeChanged(int t)
     // update tool size of selected object
     auto toolItem = activeToolObject();
     if (toolItem) {
-        // Change thickness
-        toolItem->onSizeChanged(t);
         if (!m_existingObjectIsChanged) {
             m_captureToolObjectsBackup = m_captureToolObjects;
             m_existingObjectIsChanged = true;
@@ -1603,10 +1596,6 @@ void CaptureWidget::pushToolToStack()
                    &CaptureWidget::colorChanged,
                    m_activeTool,
                    &CaptureTool::onColorChanged);
-        disconnect(this,
-                   &CaptureWidget::toolSizeChanged,
-                   m_activeTool,
-                   &CaptureTool::onSizeChanged);
         if (m_panel->toolWidget()) {
             disconnect(m_panel->toolWidget(), nullptr, m_activeTool, nullptr);
         }

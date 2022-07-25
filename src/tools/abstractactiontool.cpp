@@ -59,8 +59,3 @@ void AbstractActionTool::onColorChanged(const QColor& c)
 {
     Q_UNUSED(c)
 }
-
-void AbstractActionTool::onSizeChanged(int size)
-{
-    Q_UNUSED(size)
-}
