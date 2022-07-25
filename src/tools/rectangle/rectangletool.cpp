@@ -45,25 +45,14 @@ void RectangleTool::process(QPainter& painter, const QPixmap& pixmap)
     QPen orig_pen = painter.pen();
     QBrush orig_brush = painter.brush();
     painter.setPen(
-      QPen(color(), size(), Qt::SolidLine, Qt::SquareCap, Qt::RoundJoin));
+      QPen(color(), 0, Qt::SolidLine, Qt::SquareCap, Qt::RoundJoin));
     painter.setBrush(QBrush(color()));
-    if (size() == 0) {
-        painter.drawRect(QRect(points().first, points().second));
-    } else {
-        QPainterPath path;
-        int offset =
-          size() <= 1 ? 1 : static_cast<int>(round(size() / 2 + 0.5));
-        path.addRoundedRect(
-          QRectF(
-            std::min(points().first.x(), points().second.x()) - offset,
-            std::min(points().first.y(), points().second.y()) - offset,
-            std::abs(points().first.x() - points().second.x()) + offset * 2,
-            std::abs(points().first.y() - points().second.y()) + offset * 2),
-          size(),
-          size());
-        painter.fillPath(path, color());
-    }
+    painter.setOpacity(0.75);
+    
+    painter.drawRect(QRect(points().first, points().second));
+   
     painter.setPen(orig_pen);
+    painter.setOpacity(1);
     painter.setBrush(orig_brush);
 }
 

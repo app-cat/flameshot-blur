@@ -45,14 +45,14 @@ void PencilTool::process(QPainter& painter, const QPixmap& pixmap)
 void PencilTool::paintMousePreview(QPainter& painter,
                                    const CaptureContext& context)
 {
-    painter.setPen(QPen(context.color, context.toolSize + 2));
+    painter.setPen(QPen(context.color, 3));
     painter.drawLine(context.mousePos, context.mousePos);
 }
 
 void PencilTool::drawStart(const CaptureContext& context)
 {
     m_color = context.color;
-    onSizeChanged(context.toolSize);
+    onSizeChanged(3);
     m_points.append(context.mousePos);
     m_pathArea.setTopLeft(context.mousePos);
     m_pathArea.setBottomRight(context.mousePos);

@@ -40,7 +40,7 @@ CaptureTool* CircleTool::copy(QObject* parent)
 void CircleTool::process(QPainter& painter, const QPixmap& pixmap)
 {
     Q_UNUSED(pixmap)
-    painter.setPen(QPen(color(), size()));
+    painter.setPen(QPen(color(), 3));
     painter.drawEllipse(QRect(points().first, points().second));
 }
 

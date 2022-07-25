@@ -49,22 +49,19 @@ CaptureTool* PixelateTool::copy(QObject* parent)
 void PixelateTool::process(QPainter& painter, const QPixmap& pixmap)
 {
     QRect selection = boundingRect().intersected(pixmap.rect());
-    auto pixelRatio = pixmap.devicePixelRatio();
-    QRect selectionScaled = QRect(selection.topLeft() * pixelRatio,
-                                  selection.bottomRight() * pixelRatio);
 
-    // If thickness is less than 1, use old blur process
+    // 使用高斯模糊对选区进行模糊处理
     auto* blur = new QGraphicsBlurEffect;
     blur->setBlurRadius(24);
-    auto* item = new QGraphicsPixmapItem(pixmap.copy(selectionScaled));
+    auto* item = new QGraphicsPixmapItem(pixmap.copy(selection));
     item->setGraphicsEffect(blur);
 
     QGraphicsScene scene;
     scene.addItem(item);
 
+    // 重复渲染1次, 以提高模糊的强度
     scene.render(&painter, selection, QRectF());
-    blur->setBlurRadius(24);
-    // multiple repeat for make blur effect stronger
+    blur->setBlurRadius(64);
     scene.render(&painter, selection, QRectF());
 }
 
