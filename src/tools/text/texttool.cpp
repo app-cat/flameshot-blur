@@ -95,7 +95,7 @@ QWidget* TextTool::widget()
     closeEditor();
     m_widget = new TextWidget();
     m_widget->setTextColor(m_color);
-    m_font.setPointSize(16);
+    m_font.setPointSize(12);
     m_widget->setFont(m_font);
     connect(m_widget, &TextWidget::textUpdated, this, &TextTool::updateText);
     return m_widget;

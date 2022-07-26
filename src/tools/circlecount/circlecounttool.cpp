@@ -8,7 +8,7 @@
 
 namespace {
 #define PADDING_VALUE 2
-#define THICKNESS_OFFSET 15
+#define RADIUS 26
 }
 
 CircleCountTool::CircleCountTool(QObject* parent)
@@ -35,7 +35,7 @@ bool CircleCountTool::isValid() const
 
 QRect CircleCountTool::mousePreviewRect(const CaptureContext& context) const
 {
-    int width = (context.toolSize + THICKNESS_OFFSET) * 2;
+    int width = RADIUS * 2;
     QRect rect(0, 0, width, width);
     rect.moveCenter(context.mousePos);
     return rect;
@@ -46,7 +46,7 @@ QRect CircleCountTool::boundingRect() const
     if (!isValid()) {
         return {};
     }
-    int bubble_size = size() + THICKNESS_OFFSET + PADDING_VALUE;
+    int bubble_size = RADIUS + PADDING_VALUE;
 
     int line_pos_min_x =
       std::min(points().first.x() - bubble_size, points().second.x());
@@ -101,70 +101,49 @@ void CircleCountTool::process(QPainter& painter, const QPixmap& pixmap)
     auto orig_brush = painter.brush();
     auto orig_font = painter.font();
 
-    QColor contrastColor =
-      ColorUtils::colorIsDark(color()) ? Qt::white : Qt::black;
-    QColor antiContrastColor =
-      ColorUtils::colorIsDark(color()) ? Qt::black : Qt::white;
+    QColor fontColor = ColorUtils::colorIsDark(color()) ? Qt::white : Qt::black;
 
-    int bubble_size = size() + THICKNESS_OFFSET;
-
-    QLineF line(points().first, points().second);
+    // QLineF line(points().first, points().second);
     // if the mouse is outside of the bubble, draw the pointer
-    if (line.length() > bubble_size) {
-        painter.setPen(QPen(color(), 0));
-        painter.setBrush(color());
+    // if (line.length() > RADIUS) {
+    //     painter.setPen(QPen(color(), 0));
+    //     painter.setBrush(color());
 
-        int middleX = points().first.x();
-        int middleY = points().first.y();
+    //     int middleX = points().first.x();
+    //     int middleY = points().first.y();
 
-        QLineF normal = line.normalVector();
-        normal.setLength(bubble_size);
-        QPoint p1 = normal.p2().toPoint();
-        QPoint p2(middleX - (p1.x() - middleX), middleY - (p1.y() - middleY));
+    //     QLineF normal = line.normalVector();
+    //     normal.setLength(RADIUS);
+    //     QPoint p1 = normal.p2().toPoint();
+    //     QPoint p2(middleX - (p1.x() - middleX), middleY - (p1.y() - middleY));
 
-        QPainterPath path;
-        path.moveTo(points().first);
-        path.lineTo(p1);
-        path.lineTo(points().second);
-        path.lineTo(p2);
-        path.lineTo(points().first);
-        painter.drawPath(path);
-    }
+    //     QPainterPath path;
+    //     path.moveTo(points().first);
+    //     path.lineTo(p1);
+    //     path.lineTo(points().second);
+    //     path.lineTo(p2);
+    //     path.lineTo(points().first);
+    //     painter.drawPath(path);
+    // }
 
-    painter.setPen(contrastColor);
-    painter.setBrush(antiContrastColor);
+    // 给圆圈加个边框(反色), 用于避免标注颜色跟截图色彩相近时不好区分
+    painter.setPen(fontColor);
     painter.drawEllipse(
-      points().first, bubble_size + PADDING_VALUE, bubble_size + PADDING_VALUE);
+      points().first, RADIUS + 1, RADIUS + 1);
+    
     painter.setBrush(color());
-    painter.drawEllipse(points().first, bubble_size, bubble_size);
-    QRect textRect = QRect(points().first.x() - bubble_size / 2,
-                           points().first.y() - bubble_size / 2,
-                           bubble_size,
-                           bubble_size);
+    painter.drawEllipse(points().first, RADIUS, RADIUS);
+    QRect textRect = QRect(points().first.x() - RADIUS / 2,
+                           points().first.y() - RADIUS / 2,
+                           RADIUS,
+                           RADIUS);
     auto new_font = orig_font;
-    auto fontSize = bubble_size;
-    new_font.setPixelSize(fontSize);
+    new_font.setPointSize(9);
     new_font.setBold(true);
     painter.setFont(new_font);
 
-    // Draw bounding circle
-    QRect bRect =
-      painter.boundingRect(textRect, Qt::AlignCenter, QString::number(count()));
-
-    // Calculate font size
-    while (bRect.width() > textRect.width()) {
-        fontSize--;
-        if (fontSize == 0) {
-            break;
-        }
-        new_font.setPixelSize(fontSize);
-        painter.setFont(new_font);
-        bRect = painter.boundingRect(
-          textRect, Qt::AlignCenter, QString::number(count()));
-    }
-
     // Draw text
-    painter.setPen(contrastColor);
+    painter.setPen(fontColor);
     painter.drawText(textRect, Qt::AlignCenter, QString::number(count()));
     // restore original font, brush, and pen
     painter.setFont(orig_font);
@@ -182,7 +161,7 @@ void CircleCountTool::paintMousePreview(QPainter& painter,
     auto orig_opacity = painter.opacity();
     painter.setOpacity(0.35);
     painter.setPen(QPen(context.color,
-                        (size() + THICKNESS_OFFSET) * 2,
+                        RADIUS * 2,
                         Qt::SolidLine,
                         Qt::RoundCap));
     painter.drawLine(context.mousePos,
