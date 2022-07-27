@@ -1,5 +1,5 @@
 <div align="center">
-  <img style="width:96px" src="data/img/app/flameshot.monochrome-1024.png" alt="Flameshot" />
+  <img style="width:96px;background: #fc7661;border-radius: 50%;" src="data/img/app/flameshot.monochrome-1024.png" alt="Flameshot" />
 </div>
 
 # Flameshot(blur版)
