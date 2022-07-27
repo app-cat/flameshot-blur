@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="data/img/app/org.flameshot.Flameshot.svg" alt="Flameshot" />
+  <img style="width:96px" src="data/img/app/flameshot.monochrome-1024.png" alt="Flameshot" />
 </div>
 
 # Flameshot(blur版)
@@ -9,10 +9,10 @@
 ## blur版与原版差异
 
 - 截图中的模糊效果, 统一使用`高斯模糊`, 不再使用`像素化`.
+- 箭头标注工具修改为更美观的, 并支持自动调整大小.
 - 移除`MacOS/Windows`的支持, 这2个平台下已经有非常棒的截图软件了, flameshot在这2个平台下并没有什么优势, 所以这里不再支持.
 - 各标注工具的尺寸粗细,不再共用同一个值, 也不再提供修改, 线条类工具统一使用`3px`, 其他文本或序号统一用`16px`.
-- 移除`marker、square、redo、upload、launcher、move、size、plus、minus`等使用率低的工具.
-- 应用设置中, 移除工具的颜色配置, 固定为白底黑字.
+- 移除`marker、redo、upload、launcher、move、size、plus、minus`等使用率低的工具.
 - 应用设置中, 移除保存的文件名的格式设置, 固定为`年-月-日_时-分-秒.(jpg|png)`
 - 应用设置中, 移除所有默认的快捷键(可自行设置)
 - 标注icon更新为更加美观的
