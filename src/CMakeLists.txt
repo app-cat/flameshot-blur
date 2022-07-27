@@ -36,11 +36,11 @@ if (WIN32)
 endif ()
 
 add_subdirectory(cli)
+add_subdirectory(tools)
 add_subdirectory(config)
 add_subdirectory(core)
 add_subdirectory(utils)
 add_subdirectory(widgets)
-add_subdirectory(tools)
 
 
 set(FLAMESHOT_TS_FILES

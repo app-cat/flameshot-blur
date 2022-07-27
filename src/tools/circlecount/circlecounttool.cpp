@@ -41,27 +41,6 @@ QRect CircleCountTool::mousePreviewRect(const CaptureContext& context) const
     return rect;
 }
 
-QRect CircleCountTool::boundingRect() const
-{
-    if (!isValid()) {
-        return {};
-    }
-    int bubble_size = RADIUS + PADDING_VALUE;
-
-    int line_pos_min_x =
-      std::min(points().first.x() - bubble_size, points().second.x());
-    int line_pos_min_y =
-      std::min(points().first.y() - bubble_size, points().second.y());
-    int line_pos_max_x =
-      std::max(points().first.x() + bubble_size, points().second.x());
-    int line_pos_max_y =
-      std::max(points().first.y() + bubble_size, points().second.y());
-
-    return { line_pos_min_x,
-             line_pos_min_y,
-             line_pos_max_x - line_pos_min_x,
-             line_pos_max_y - line_pos_min_y };
-}
 
 QString CircleCountTool::name() const
 {
@@ -103,34 +82,12 @@ void CircleCountTool::process(QPainter& painter, const QPixmap& pixmap)
 
     QColor fontColor = ColorUtils::colorIsDark(color()) ? Qt::white : Qt::black;
 
-    // QLineF line(points().first, points().second);
-    // if the mouse is outside of the bubble, draw the pointer
-    // if (line.length() > RADIUS) {
-    //     painter.setPen(QPen(color(), 0));
-    //     painter.setBrush(color());
-
-    //     int middleX = points().first.x();
-    //     int middleY = points().first.y();
-
-    //     QLineF normal = line.normalVector();
-    //     normal.setLength(RADIUS);
-    //     QPoint p1 = normal.p2().toPoint();
-    //     QPoint p2(middleX - (p1.x() - middleX), middleY - (p1.y() - middleY));
-
-    //     QPainterPath path;
-    //     path.moveTo(points().first);
-    //     path.lineTo(p1);
-    //     path.lineTo(points().second);
-    //     path.lineTo(p2);
-    //     path.lineTo(points().first);
-    //     painter.drawPath(path);
-    // }
 
     // 给圆圈加个边框(反色), 用于避免标注颜色跟截图色彩相近时不好区分
     painter.setPen(fontColor);
     painter.drawEllipse(
       points().first, RADIUS + 1, RADIUS + 1);
-    
+
     painter.setBrush(color());
     painter.drawEllipse(points().first, RADIUS, RADIUS);
     QRect textRect = QRect(points().first.x() - RADIUS / 2,

@@ -18,7 +18,6 @@ public:
     bool isValid() const override;
 
     QRect mousePreviewRect(const CaptureContext& context) const override;
-    QRect boundingRect() const override;
 
     CaptureTool* copy(QObject* parent = nullptr) override;
     void process(QPainter& painter, const QPixmap& pixmap) override;
