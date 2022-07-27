@@ -20,6 +20,12 @@
 - 移除了除英文、中文以外的其他语言包
 
 
+
+<div align="center">
+    ![preview](./data/img/preview.png)
+</div>
+
+
 ## 使用
 
 
