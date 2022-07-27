@@ -22,7 +22,7 @@
 
 
 <div align="center">
-    ![preview](./data/img/preview.png)
+    <img src="./data/img/preview.png" alt="preview" />
 </div>
 
 
