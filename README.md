@@ -109,11 +109,6 @@
 - Qt
   + SVG
 
-#### Optional
-
-- Git
-- OpenSSL
-- CA Certificates
 
 #### Debian
 
@@ -124,8 +119,6 @@ apt install g++ cmake build-essential qtbase5-dev qttools5-dev-tools libqt5svg5-
 # Run-time
 apt install libqt5dbus5 libqt5network5 libqt5core5a libqt5widgets5 libqt5gui5 libqt5svg5
 
-# Optional
-apt install git openssl ca-certificates
 ```
 
 #### Fedora
@@ -137,8 +130,6 @@ dnf install gcc-c++ cmake qt5-qtbase-devel qt5-linguist
 # Run-time
 dnf install qt5-qtbase qt5-qtsvg-devel
 
-# Optional
-dnf install git openssl ca-certificates
 ```
 
 #### Arch
@@ -150,8 +141,6 @@ pacman -S cmake base-devel git qt5-base qt5-tools
 # Run-time
 pacman -S qt5-svg
 
-# Optional
-pacman -S openssl ca-certificates
 ```
 
 #### NixOS
