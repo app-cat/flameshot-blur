@@ -8,7 +8,7 @@
 
 namespace {
 #define PADDING_VALUE 2
-#define RADIUS 26
+#define RADIUS 18
 }
 
 CircleCountTool::CircleCountTool(QObject* parent)
@@ -95,7 +95,7 @@ void CircleCountTool::process(QPainter& painter, const QPixmap& pixmap)
                            RADIUS,
                            RADIUS);
     auto new_font = orig_font;
-    new_font.setPointSize(9);
+    new_font.setPixelSize(RADIUS);
     new_font.setBold(true);
     painter.setFont(new_font);
 
